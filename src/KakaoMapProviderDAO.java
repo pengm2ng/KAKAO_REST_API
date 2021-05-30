@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -37,7 +39,13 @@ public class KakaoMapProviderDAO {
     public List<String> findPlace(String placeName) {
 
         try {
+            File file = new File("./key.txt");
+            BufferedReader inFiles
+            
+            = new BufferedReader(new InputStreamReader(new FileInputStream(file.getAbsolutePath()), "UTF8"));
 
+            String key = inFiles.readLine();
+            inFiles.close();
             URL url = new URL("https://dapi.kakao.com/v2/local/search/keyword.json?page=1&size=1&sort=accuracy&query="
                     + URLEncoder.encode(placeName, "utf-8"));
             System.out.println(url.toString());
